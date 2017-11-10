@@ -47,12 +47,12 @@ function maybe_bounce(req, res, sock, head) {
         return false;
     }
 
-    const subdomain = tldjs.getSubdomain(hostname);
+    let subdomain = tldjs.getSubdomain(hostname);
     if (!subdomain) {
         return false;
     }
 
-    const client = clients[subdomain];
+    let client = clients[subdomain];
 
     if(!client || subdomain.indexOf('.') !== -1) {
 
@@ -60,7 +60,7 @@ function maybe_bounce(req, res, sock, head) {
 
         for(var i = 0; i <= subdomain.length; i++) {
 
-            client_id = subdomain.slice(0, i).join('.');
+            let client_id = subdomain.slice(0, i).join('.');
             client = clients[client_id];
 
             if(client) {
